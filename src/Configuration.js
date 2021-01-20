@@ -1,5 +1,6 @@
 import Leaflet from 'leaflet'
-import { streetlightPopup } from './Popups'
+import { taxirankspointsPopup, taxiranksPopup } from './Popups'
+import { taxirankspointsStyle, taxiranksStyle } from './Styles'
 
 const Configuration = {
     Map: {
@@ -13,23 +14,57 @@ const Configuration = {
     },
     DynamicData: 
     [
+        
         {
-            key: 'streetlights',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highways:street_lights&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            key: 'Taxi Ranks',
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highways:taxi_ranks_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
             layerOptions: {
-                onEachFeature: streetlightPopup,
+                onEachFeature: taxiranksPopup,
                 maxZoom: 16,
+                style: taxiranksStyle,
+            },
+            displayOverlay: false,
+            visibleByDefault: true
+        },
+        {
+            key: 'Taxi Ranks',
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highways:taxi_ranks_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            layerOptions: {
+                onEachFeature: taxirankspointsPopup,
+                maxZoom: 16,
+                style: taxirankspointsStyle,
                 pointToLayer: (feature, latlng) => {
-                    return Leaflet.circleMarker(latlng, {
-                        radius: 8,
-                        fillColor: '#15863a',
-                        color: '#000',
-                        weight: 1,
-                        fillOpacity: 1
-                    })
+                    return Leaflet.circleMarker(latlng)
                 },
             },
-            displayOverlay: false
+            displayOverlay: false,
+            visibleByDefault: true
+        },
+        {
+            key: 'os1250_line',
+            url: 'http://spatial.stockport.gov.uk/geoserver/wms?',
+            layerOptions: {
+                maxZoom: 20,
+                minZoom: 18,
+                layers: 'base_maps:os1250_line',
+                format: 'image/png',
+                transparent: true
+            },
+            displayOverlay: false,
+            visibleByDefault: true
+        },
+        {
+            key: 'os1250_text',
+            url: 'http://spatial.stockport.gov.uk/geoserver/wms?',
+            layerOptions: {
+                maxZoom: 20,
+                minZoom: 18,
+                layers: 'base_maps:os1250_text',
+                format: 'image/png',
+                transparent: true
+            },
+            displayOverlay: false,
+            visibleByDefault: true
         }
     ],
     StaticData: 
