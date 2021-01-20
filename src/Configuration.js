@@ -1,5 +1,5 @@
 import Leaflet from 'leaflet'
-import { taxirankspointsPopup, taxiranksPopup } from './Popups'
+import { taxirankspointsPopup } from './Popups'
 import { taxirankspointsStyle, taxiranksStyle } from './Styles'
 
 const Configuration = {
@@ -17,10 +17,10 @@ const Configuration = {
         
         {
             key: 'Taxi Ranks',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highways:taxi_ranks_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highways:taxi_ranks&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
             layerOptions: {
                 onEachFeature: taxiranksPopup,
-                maxZoom: 16,
+                maxZoom: 2,
                 style: taxiranksStyle,
             },
             displayOverlay: false,
@@ -31,7 +31,7 @@ const Configuration = {
             url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highways:taxi_ranks_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
             layerOptions: {
                 onEachFeature: taxirankspointsPopup,
-                maxZoom: 16,
+                maxZoom: 2,
                 style: taxirankspointsStyle,
                 pointToLayer: (feature, latlng) => {
                     return Leaflet.circleMarker(latlng)
