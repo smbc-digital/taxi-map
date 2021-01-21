@@ -4,7 +4,7 @@ import { taxirankspointsStyle, taxiranksStyle } from './Styles'
 
 const Configuration = {
     Map: {
-        StartingLatLng: [53.408841 , -2.1587385],
+        StartingLatLng: [53.409631 , -2.1587968],
         StartingZoom: 16,
         FullscreenControl: true,
         DisplayLayerControls: true,
