@@ -43,7 +43,7 @@ function App() {
 
     if (Config.Map.EnableAddressSearch){
       mapRef.current.addControl(SearchControlOverlay())
-      let searchButtonRefs = document.querySelector('.leaflet-ontrol-search .search-button')
+      let searchButtonRefs = document.querySelector('.leaflet-control-search .search-button')
       searchButtonRefs.click()
     }
   }
